@@ -60,8 +60,7 @@ function getProvinceName(lat, lng, callback) {
             callback(null);
         });
 }
-
-async function saveData() {
+document.getElementById('locateBtn').addEventListener('click',async function () {
     const longitude = document.getElementById('longitude').textContent;
     const latitude = document.getElementById('latitude').textContent;
     const region = document.getElementById('region').textContent;
@@ -88,4 +87,4 @@ async function saveData() {
     const writable = await fileHandle.createWritable();
     await writable.write(JSON.stringify(data, null, 2));
     await writable.close();
-}
+});
