@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locate & Upload</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <!-- Font Awesome for icons -->
+    <link href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-map-marked-alt"></i> Locate & Upload</h1>
+        </div>
+        <div class="map-section">
+            <div id="map"></div>
+            <button id="locateBtn" class="locate-btn"><i class="fa-thin fa-street-view fa-bounce fa-lg" style="color: #ffffff"></i>Locate me!</button>
+        </div>
+        <div class="info-section">
+            <table>
+                <tr>
+                    <td>Longitude:</td>
+                    <td id="longitude">-</td>
+                </tr>
+                <tr>
+                    <td>Latitude:</td>
+                    <td id="latitude">-</td>
+                </tr>
+                <tr>
+                    <td>Region:</td>
+                    <td id="region">-</td>
+                </tr>
+            </table>
+            <div class="upload-section">
+                <label for="photoUpload"><i class="fas fa-camera"></i> Upload Photos</label>
+                <input type="file" id="photoUpload" multiple accept="image/*" capture="camera" />
+            </div>
+        </div>
+    </div>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
