@@ -1,5 +1,5 @@
 # locanup
-  https://jehacode.github.io/locanup
+  https://jehacode.github.io/locanup/app
 ## What is this
   A small website for mobile phone to get their current location and region
 ## What is it for
