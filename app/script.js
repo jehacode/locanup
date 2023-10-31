@@ -60,7 +60,7 @@ function getProvinceName(lat, lng, callback) {
             callback(null);
         });
 }
-document.getElementById('locateBtn').addEventListener('click',async function () {
+document.getElementById('saveData').addEventListener('click',async function () {
     const longitude = document.getElementById('longitude').textContent;
     const latitude = document.getElementById('latitude').textContent;
     const region = document.getElementById('region').textContent;
