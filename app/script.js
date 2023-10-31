@@ -11,6 +11,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 document.getElementById('locateBtn').addEventListener('click', function() {
     map.locate({setView: true, maxZoom: 16});
 });
+document.getElementById('saveBtn').addEventListener('click',saveData);
+
 
 
 map.on('locationfound', onLocationFound);
@@ -60,7 +62,7 @@ function getProvinceName(lat, lng, callback) {
             callback(null);
         });
 }
-document.getElementById('saveData').addEventListener('click',async function () {
+async function saveData() {
     const longitude = document.getElementById('longitude').textContent;
     const latitude = document.getElementById('latitude').textContent;
     const region = document.getElementById('region').textContent;
@@ -87,4 +89,4 @@ document.getElementById('saveData').addEventListener('click',async function () {
     const writable = await fileHandle.createWritable();
     await writable.write(JSON.stringify(data, null, 2));
     await writable.close();
-});
+}
