@@ -1,7 +1,8 @@
 var map = L.map('map').setView([21.54238, 39.19797], 8);
 let circle; // Circle for now it will be change to
-let radius = 1000;
-  // 1 km radius
+let fileHandle;
+let radius = 1000;// 1 km radius
+
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap'
@@ -12,8 +13,8 @@ document.getElementById('locateBtn').addEventListener('click', function() {
 });
 
 
-
 map.on('locationfound', onLocationFound);
+
     
 //Function Parts
 // 
@@ -29,7 +30,6 @@ function onLocationFound(e) {
     document.querySelector('#locateBtn i.fa-thin').classList.remove('fa-bounce');
     document.getElementById('longitude').textContent = e.latlng.lng.toFixed(4);
     document.getElementById('latitude').textContent = e.latlng.lat.toFixed(4);
-
     console.log(document.getElementById('latitude').textContent)
 
     getProvinceName(document.getElementById('latitude').textContent ,document.getElementById('longitude').textContent , function(province) {
@@ -59,4 +59,33 @@ function getProvinceName(lat, lng, callback) {
             console.error("Error fetching location data: ", error);
             callback(null);
         });
+}
+
+async function saveData() {
+    const longitude = document.getElementById('longitude').textContent;
+    const latitude = document.getElementById('latitude').textContent;
+    const region = document.getElementById('region').textContent;
+
+    const data = {
+        longitude: longitude,
+        latitude: latitude,
+        region: region,
+        timestamp: Date()
+    };
+
+    if (!fileHandle) {
+        fileHandle = await window.showSaveFilePicker({
+            suggestedName: 'data.json',
+            types: [{
+                description: 'JSON files',
+                accept: {
+                    'application/json': ['.json']
+                }
+            }]
+        });
+    }
+
+    const writable = await fileHandle.createWritable();
+    await writable.write(JSON.stringify(data, null, 2));
+    await writable.close();
 }
